@@ -1,0 +1,10 @@
+default_env: &default
+  adapter: postgresql
+  encoding: unicode
+  database: c_share_commi_1
+
+development:
+  <<: *default
+
+production:
+  <<: *default
