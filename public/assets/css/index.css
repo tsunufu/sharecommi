@@ -31,6 +31,7 @@
     background-repeat: no-repeat;
     */
   }
+  
 
   .first-view h1 {
     font-family: 'Righteous', cursive;
@@ -80,3 +81,8 @@
   .container{
     text-align:center;
   }
+  
+  .lead{
+    color: black;
+  }
+  

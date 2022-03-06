@@ -1,4 +1,4 @@
-<section class="first-view center-vertical">
+<!--<section class="first-view center-vertical">
 	<h1>ログイン</h1>
 	<div class="login_button">
 		<div class="container">
@@ -9,4 +9,22 @@
 		</form>
 		</div>
 	</div>
+</section>-->
+
+<section class="first-view center-vertical">
+<main class="form-signin">
+  <form action="/signin" method="post">
+    <h1 class="h3 mb-3 fw-normal text-center">ログイン</h1>
+
+    <div class="form-floating">
+      <input type="text" name="name" class="form-control" id="floatingInput" placeholder="ユーザー名">
+      <label for="floatingInput">ユーザー名</label>
+    </div>
+    <div class="form-floating">
+      <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="パスワード">
+      <label for="floatingPassword">パスワード</label>
+    </div>
+    <button class="w-100 btn btn-lg" style="background-color: #393073; color: white;" type="submit">Sign in</button><!--文字の色ここで変更してしまったよ-->
+  </form>
+</main>
 </section>
