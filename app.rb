@@ -26,36 +26,36 @@ before do
 end
 
 get '/' do
-    @contents = User.all.order('id desc')
-    @usermusics = Post.all
     erb :index
+end
+
+get '/home' do
+    @contents = User.all.order('id desc')
+    @userposts = Post.all
+    erb :home
 end
 
 get '/signup' do
     erb :sign_up
 end
 
-get '/home' do
+get '/mypage' do
     if current_user.nil?
-        @useridmusics = Post.none
+        @useridposts = Post.none
         @favorites = Favorite.none
     else
-        @useridmusics = current_user.musics
+        @useridposts = current_user.posts
         @favorites = current_user.favorite_posts
     end
-    erb :home
+    erb :mypage
 end
 
-get '/search' do
-    keyword = params[:keyword]
-    uri = URI("https://itunes.apple.com/search")
-    uri.query = URI.encode_www_form({ term: keyword, country: "JP", media: "music", limit: 10 })
-    res = Net::HTTP.get_response(uri)
-    returned_JSON = JSON.parse(res.body)
-    @musics = returned_JSON["results"]
-    
-    
-    erb :search
+get '/signin' do
+    erb :sign_in
+end
+
+get '/post' do
+    erb :new
 end
 
 post '/signin' do
@@ -90,16 +90,16 @@ get '/signout' do
     redirect '/'
 end
 
-post '/post' do
-    #current_user.posts.create(img: params[:img], artist: params[:artist], 
-    #album: params[:album], name: params[:name], sample: params[:sample], comment: params[:comment], user_id: session[:user])
-    redirect '/'
+post '/home' do
+    current_user.posts.create(shopname: params[:shopname], img: params[:img], 
+    category: params[:category], assessment: params[:assessment], shopurl: params[:shopurl], comment: params[:comment], user_id: session[:user])
+    redirect '/home'
 end
 
 get '/post/:id/del' do
     music = Post.find(params[:id])
     music.destroy
-    redirect '/'
+    redirect '/home'
 end
 
 get '/post/:id/edit' do
@@ -111,7 +111,7 @@ post '/post/:id' do
     music = Post.find(params[:id])
     music.comment = params[:comment]
     music.save
-    redirect '/'
+    redirect '/home'
 end
 
 get '/post/:id/like' do
@@ -126,3 +126,16 @@ get '/post/:id/like_del' do
     like.delete
     redirect '/home'
 end
+
+get '/home/:id/follow' do
+    current_user.relationships.create(follower_id: session[:user], followed_id: params[:id])
+    redirect '/home'
+end
+
+get 'home/:id/follow_del' do
+    follow = current_user.relationships.find_by(followed_id: params[:id])
+    follow.destroy
+    follow.save
+    redirect '/home'
+end
+

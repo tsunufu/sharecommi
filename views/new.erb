@@ -1,0 +1,27 @@
+<section class="first-view center-vertical">
+	<h1>新規投稿</h1>
+	<div class="login_button">
+		<div class="container">
+		<form action="/home" method="post">
+		    お店の名前<br>
+		    <input type="text" name="shopname" placeholder="お店の名前"><br>
+		    <input type="file" name="img"><br>
+		    <label for="grade">カテゴリー</label><br>
+				<select id="grade" name="category">
+					<option value="飲食店">飲食店</option>
+					<option value="カフェ">カフェ</option>
+					<option value="レジャー">レジャー</option>
+					<option value="ビューティー">ビューティー</option>
+					<option value="ホテル">ホテル</option>
+				</select><br>
+			評価<br>
+		    <input type="number" name="assessment"><br>
+		    URL<br>
+		    <input type="text" name="shopurl"><br>
+		    コメント<br>
+		    <textarea id="content" name="comment" rows="4" cols="40" placeholder="コメント"></textarea><br>
+		    <input type="submit" value="投稿">
+		</form>
+		</div>
+	</div>
+</section>

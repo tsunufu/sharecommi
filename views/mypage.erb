@@ -1,0 +1,66 @@
+<section class="center-vertical">
+	<h1><%= current_user.name %>の投稿</h1>
+	<div class="post center-vertical">
+	<% if !@useridposts.empty? %>
+			<% @useridposts.each do |useridpost| %>
+				<p>お店の名前: <%= useridpost["shopname"] %></p>
+				<img src="<%= useridpost["img"] %>" width="125" height="125">
+				<p>ジャンル: <%= useridpost["category"] %></p>
+				<p>評価: <%= useridpost["assessment"] %></p>
+				<p><a href="<%= useridpost["shopurl"] %>">URL</a></p>
+				<p>コメント: <%= useridpost["comment"] %></p>
+				<p>投稿者: <%= User.find_by(id: useridpost.user_id).name %></p>
+				<p>いいねしたユーザー</p>
+				<div class="user-box">
+					<img src="" alt="user_image" width="40" height="40">
+				</div>
+				<a href="/post/<%= useridpost.id %>/edit">編集</a>
+				<a href="/post/<%= useridpost.id %>/del">削除</a>
+			<% end %>
+	</div>
+	<% else %>
+	<p>投稿がありません</p>
+	<% end %>
+</section>
+
+<section class="center-vertical">
+	<h1><%= current_user.name %>のイイねした投稿</h1>
+	<div class="post center-vertical">
+		<% if !@favorites.empty? %>
+			<% @favorites.each do |favorite| %>
+				<p>お店の名前: <%= favorite["shopname"] %></p>
+				<img src="<%= favorite["img"] %>" width="125" height="125">
+				<p>ジャンル: <%= favorite["category"] %></p>
+				<p>評価: <%= favorite["assessment"] %></p>
+				<p><a href="<%= favorite["shopurl"] %>">URL</a></p>
+				<p>コメント: <%= favorite["comment"] %></p>
+				<p>投稿者: <%= User.find_by(id: favorite.user_id).name %></p>
+				<p>いいねしたユーザー</p>
+				<% favorite.favorite_users.each do |favorite_user| %>
+					<div class="user-box">
+						<img src="<%= favorite_user.icon%>" alt="user_image" width="40" height="40">
+					</div>
+				<% end %>
+			<% end %>
+	</div>
+	<% else %>
+	<p>イイねがありません</p>
+	<% end %>
+</section>
+
+<section class="center-vertical">
+	<h1><%= current_user.name %>のフォロー</h1>
+	<% current_user.relationships.each do |relationship| %>
+	<p><%= User.find(relationship.followed_id).name %></p>
+	<a href="/home/<%= current_user.id %>/follow_del">フォロー解除</a><br>
+	<% end %>
+</section>
+
+<section class="center-vertical">
+	<h1><%= current_user.name %>のフォロワー</h1>
+	<% unless Relationship.find_by(followed_id: session[:user]).nil? %>
+		<% Relationship.where(followed_id: session[:user]).each do |relationship| %>
+			<p><%= User.find(relationship.follower_id).name %></p>
+		<% end %>
+	<% end %>
+</section>

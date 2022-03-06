@@ -1,59 +1,37 @@
 <section class="center-vertical">
-	<h1><%= current_user.name %>の投稿</h1>
-	<div class="post center-vertical">
-	<% if !@useridmusics.empty? %>
-			<% @useridmusics.each do |useridmusic| %>
-				<img src="<%= useridmusic["img"] %>" width="125" height="125">
-				<p>アーティスト: <%= useridmusic["artist"] %></p>
-				<p>アルバム: <%= useridmusic["album"] %></p>
-				<p>曲名: <%= useridmusic["name"] %></p>
-				<p><a href="<%= useridmusic["sample"] %>">サンプル</a></p>
-				<p>コメント: <%= useridmusic["comment"] %></p>
-				<p>投稿者: <%= User.find_by(id: useridmusic.user_id).name %></p>
-				<p>いいねしたユーザー</p>
-				<div class="user-box">
-					<img src="" alt="user_image" width="40" height="40">
-				</div>
-				<a href="/post/<%= useridmusic.id %>/edit">編集</a>
-				<a href="/post/<%= useridmusic.id %>/del">削除</a>
-			<% end %>
-	</div>
-	<% else %>
-	<%# TODO: ここで分岐 %>
-	<p>投稿がありません</p>
-	<% end %>
-</section>
+	<h1>最新の投稿</h1>
 
-<section class="center-vertical">
-	<h1><%= current_user.name %>のイイねした投稿</h1>
 	<div class="post center-vertical">
-		<% if !@favorites.empty? %>
-			<% @favorites.each do |favorite| %>
-				<img src="<%= favorite["img"] %>" width="125" height="125">
-				<p>アーティスト: <%= favorite["artist"] %></p>
-				<p>アルバム: <%= favorite["album"] %></p>
-				<p>曲名: <%= favorite["name"] %></p>
-				<p><a href="<%= favorite["sample"] %>">サンプル</a></p>
-				<p>コメント: <%= favorite["comment"] %></p>
-				<p>投稿者: <%= User.find_by(id: favorite.user_id).name %></p>
+		<% if !@userposts.empty? %>
+			<% @userposts.each do |userpost| %>
+				<p>お店の名前: <%= userpost["shopname"] %></p>
+				<img src="<%= userpost["img"] %>" width="125" height="125">
+				<p>ジャンル: <%= userpost["category"] %></p>
+				<p>評価: <%= userpost["assessment"] %></p>
+				<p><a href="<%= userpost["shopurl"] %>">URL</a></p>
+				<p>コメント: <%= userpost["comment"] %></p>
+				<p>投稿者: <%= User.find_by(id: userpost.user_id).name %></p>
+				<% unless current_user.relationships.find_by(followed_id: userpost.user_id ) %>
+				    <a href="/home/<%= userpost.user_id %>/follow">フォローする</a>
+				<% else %>
+				    <a href="/home/<%= userpost.user_id %>/follow_del">フォロー解除</a>
+				<% end %>
 				<p>いいねしたユーザー</p>
-				<% favorite.favorite_users.each do |favorite_user| %>
+				<% userpost.favorite_users.each do |favorite_user| %>
 					<div class="user-box">
-						<img src="<%= favorite_user.icon%>" alt="user_image" width="40" height="40">
+						<img src="<%= favorite_user.icon %>" alt="user_image" width="40", height="40">
 					</div>
 				<% end %>
+					<% if !current_user.nil? %>
+						<% if !userpost.favorite_users.find_by(id: session[:user]) %>
+							<a href="/post/<%= userpost.id %>/like">いいねする</a>
+						<% else %>
+							<a href="/post/<%= userpost.id %>/like_del">削除</a>
+						<% end%>
+					<% end %>
 			<% end %>
 	</div>
 	<% else %>
-	<p>イイねがありません</p>
+	<p>投稿がありません</p>
 	<% end %>
-</section>
-
-<section class="center-vertical">
-	<h1><%= current_user.name %>のフォロー</h1>
-	<a href="#">フォロー解除</a><br>
-</section>
-
-<section class="center-vertical">
-	<h1><%= current_user.name %>のフォロワー</h1>
 </section>
