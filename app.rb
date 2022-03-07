@@ -96,6 +96,15 @@ get '/home/hotel' do
     erb :home_hotel
 end
 
+get '/mypage/favorite' do
+    if current_user.nil?
+        @favorites = Favorite.none
+    else
+        @favorites = current_user.favorite_posts
+    end
+    erb :mypage_like
+end
+
 post '/signin' do
     user = User.find_by(name: params[:name])
     if user && user.authenticate(params[:password])

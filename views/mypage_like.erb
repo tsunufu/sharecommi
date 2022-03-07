@@ -1,0 +1,59 @@
+
+<div class="container">
+	<div class="row">
+      <div class="col-lg-4">
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="<%= User.find_by(id: current_user).icon %>">
+        <h2><%= User.find_by(id: current_user).name %></h2>
+      </div><!-- /.col-lg-4 -->
+      
+      <div class="col-lg-4">
+      	<p>自己紹介文が入力されていません</p><br>
+      	<a href="mypage/:id/following"><strong>フォロー</strong></a>
+      	<a href="mypage/:id/follower"><strong>フォロワー</strong></a>
+      </div>
+      
+      <div class-"col-lg-4">
+      	<!--編集用リンクを作る-->
+      </div>
+      	
+      
+    </div><!-- /.row -->
+   </div>
+   
+   <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href="../mypage">自分の投稿</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="../mypage/favorite">いいねした投稿</a>
+  </li>
+</ul>
+
+		<div class="album py-5 bg-light">
+    		<div class="container">
+    			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+					<% if !@favorites.empty? %>
+						<% @favorites.each do |favorite| %>
+						        <div class="col">
+						        	<div class="card shadow-sm">
+						            <img class="bd-placeholder-img card-img-top" width="100%" height="225"  src="<%= favorite["img"] %>"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/>
+						
+								        <div class="card-body">
+								              <p class="card-text">お店の名前: <%= favorite["shopname"] %></p><br>
+								              <p class="card-text">ジャンル: <%= favorite["category"] %></p><br>
+								              <p class="card-text">評価: <%= favorite["assessment"] %></p><br>
+								              <p class="card-text"><a href="<%= favorite["shopurl"] %>">URL</a></p><br>
+								              <p class="card-text">コメント: <%= favorite["comment"] %></p><br>
+										</div>
+						          		</div>
+						        	</div>
+						<% end %>
+				</div>
+			</div>
+		</div>
+	<!--</div>-->
+			<% else %>
+			<p>投稿がありません</p>
+			<% end %>
+
+

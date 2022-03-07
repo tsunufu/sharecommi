@@ -2,8 +2,10 @@
 <section class="first-view center-vertical">
   	<h1>SHARE COMMI</h1>
       <p class="lead">全く新しいクチコミ投稿SNS</p>
+      <% unless !current_user.nil? %>
       <p class="lead">
         <a href="/signup" class="btn btn-lg btn-secondary fw-bold" style="background-color: #393073;">SignUp</a>
       </p>
+      <% end %>
 </section>
 </body>
