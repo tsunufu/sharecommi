@@ -178,7 +178,7 @@ get '/home/:id/follow' do
     redirect '/home'
 end
 
-get 'home/:id/follow_del' do
+get '/home/:id/follow_del' do
     follow = current_user.relationships.find_by(followed_id: params[:id])
     follow.destroy
     follow.save
