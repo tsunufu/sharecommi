@@ -66,6 +66,27 @@
 </section>
 -->
 
+<div class="container">
+	<div class="row">
+      <div class="col-lg-4">
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="<%= User.find_by(id: current_user).icon %>">
+        <h2><%= User.find_by(id: current_user).name %></h2>
+      </div><!-- /.col-lg-4 -->
+      
+      <div class="col-lg-4">
+      	<p>自己紹介文が入力されていません</p><br>
+      	<a href="mypage/:id/following"><strong>フォロー</strong></a>
+      	<a href="mypage/:id/follower"><strong>フォロワー</strong></a>
+      </div>
+      
+      <div class-"col-lg-4">
+      	<!--編集用リンクを作る-->
+      </div>
+      	
+      
+    </div><!-- /.row -->
+   </div>
+
 		<div class="album py-5 bg-light">
     		<div class="container">
     			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">

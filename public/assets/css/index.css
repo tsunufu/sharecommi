@@ -10,8 +10,7 @@
   }
 
   nav a {
-    font-family: 'Righteous',
-      cursive;
+    font-family: 'Roboto', sans-serif;
     color: white;
     text-decoration: none;
     margin-left: 15px;
@@ -34,7 +33,7 @@
   
 
   .first-view h1 {
-    font-family: 'Righteous', cursive;
+    font-family: 'Roboto', sans-serif;
     color: black;
   }
 

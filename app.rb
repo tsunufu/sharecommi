@@ -58,12 +58,50 @@ get '/post' do
     erb :new
 end
 
+get '/mypage/:id/following' do
+    erb :following
+end
+
+get '/mypage/:id/follower' do
+    erb :follower
+end
+
+get '/home/restaurant' do
+    @contents = User.all.order('id desc')
+    @userposts = Post.where(category: "飲食店")
+    erb :home_restaurant
+end
+
+get '/home/cafe' do
+    @contents = User.all.order('id desc')
+    @userposts = Post.where(category: "カフェ")
+    erb :home_cafe
+end
+
+get '/home/leisure' do
+    @contents = User.all.order('id desc')
+    @userposts = Post.where(category: "レジャー")
+    erb :home_leisure
+end
+
+get '/home/beauty' do
+    @contents = User.all.order('id desc')
+    @userposts = Post.where(category: "ビューティー")
+    erb :home_beauty
+end
+
+get '/home/hotel' do
+    @contents = User.all.order('id desc')
+    @userposts = Post.where(category: "ホテル")
+    erb :home_hotel
+end
+
 post '/signin' do
     user = User.find_by(name: params[:name])
     if user && user.authenticate(params[:password])
         session[:user] = user.id
     end
-    redirect '/'
+    redirect '/home'
 end
 
 post '/signup' do
@@ -82,7 +120,7 @@ post '/signup' do
     if @user.persisted?
         session[:user] = @user.id
     end
-    redirect '/'
+    redirect '/home'
 end
 
 get '/signout' do
@@ -91,7 +129,15 @@ get '/signout' do
 end
 
 post '/home' do
-    current_user.posts.create(shopname: params[:shopname], img: params[:img], 
+    shopimg_url = ''
+    if params[:file]
+        shopimg = params[:file]
+        tempfile = shopimg[:tempfile]
+        upload = Cloudinary::Uploader.upload(tempfile.path)
+        shopimg_url = upload['url']
+    end
+    
+    current_user.posts.create(shopname: params[:shopname], img: shopimg_url, 
     category: params[:category], assessment: params[:assessment], shopurl: params[:shopurl], comment: params[:comment], user_id: session[:user])
     redirect '/home'
 end

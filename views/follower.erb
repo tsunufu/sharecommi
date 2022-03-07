@@ -1,0 +1,8 @@
+<section class="center-vertical">
+	<h1><%= current_user.name %>のフォロワー</h1>
+	<% unless Relationship.find_by(followed_id: session[:user]).nil? %>
+		<% Relationship.where(followed_id: session[:user]).each do |relationship| %>
+			<p><%= User.find(relationship.follower_id).name %></p>
+		<% end %>
+	<% end %>
+</section>

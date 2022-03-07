@@ -1,0 +1,7 @@
+<section class="center-vertical">
+	<h1><%= current_user.name %>のフォロー</h1>
+	<% current_user.relationships.each do |relationship| %>
+	<p><%= User.find(relationship.followed_id).name %></p>
+	<a href="/home/<%= current_user.id %>/follow_del">フォロー解除</a><br>
+	<% end %>
+</section>
