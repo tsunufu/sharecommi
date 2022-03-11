@@ -158,15 +158,40 @@ get '/post/:id/del' do
 end
 
 get '/post/:id/edit' do
-    @post = Post.find(params[:id])
-    erb :edit
+    @userpost = Post.find(params[:id])
+    erb :post_edit
 end
 
 post '/post/:id' do
-    music = Post.find(params[:id])
-    music.comment = params[:comment]
-    music.save
-    redirect '/home'
+    edit_img_url = ''
+    if params[:file]
+        edit_img = params[:file]
+        tempfile = edit_img[:tempfile]
+        upload = Cloudinary::Uploader.upload(tempfile.path)
+        edit_img_url = upload['url']
+    end
+    
+    edit = Post.find(params[:id])
+    edit.img = edit_img_url
+    edit.shopname = params[:shopname]
+    edit.shopurl = params[:shopurl]
+    edit.comment = params[:comment]
+    
+    edit.save
+    redirect '/mypage'
+end
+
+
+get '/mypage/:id/edit' do
+    @userinfo = User.find(params[:id])
+    erb :edit
+end
+
+post '/mypage/:id' do
+    info = User.find(params[:id])
+    info.intro = params[:intro]
+    info.save
+    redirect '/mypage'
 end
 
 get '/post/:id/like' do

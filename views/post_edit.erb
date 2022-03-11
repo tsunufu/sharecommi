@@ -1,0 +1,17 @@
+<section class="center-vertical">
+	<h1>編集</h1>
+	<div class="login_button">
+		<div class="container">
+		<form action="/post/<%= @userpost.id %>" method="post" enctype="multipart/form-data">
+		    お店の名前<br>
+		    <input type="text" name="shopname" placeholder="お店の名前"><br>
+		    <input type="file" name="file"><br>
+		    URL<br>
+		    <input type="text" name="shopurl"><br>
+		    コメント<br>
+		    <textarea id="content" name="comment" rows="4" cols="40" placeholder="コメント"></textarea><br>
+		    <input type="submit" value="変更">
+		</form>
+		</div>
+	</div>
+</section>

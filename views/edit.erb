@@ -1,7 +1,7 @@
 <section class="center-vertical">
-	<h1>コメントの更新</h1>
-	<form action="/post/<%= @post.id %>" method="post" placeholder=<%= @post.comment %>>
-	<input type="text" name"comment">
-	<input type="submit" value="登録">
+	<h1>ユーザー情報編集</h1>
+	<form action="/mypage/<%= @userinfo.id %>" method="post">
+	<textarea type="text" name="intro" rows="4" cols="40" placeholder=自己紹介文を入力してください></textarea><br>
+	<input type="submit" value="変更">
 	</form>
 </section>
