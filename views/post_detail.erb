@@ -1,0 +1,50 @@
+<div class="col">
+						        	<div class="card shadow-sm">
+						        		<div class="card-header">
+						        			<p class="card-text"><%= User.find_by(id: @detail.user_id).name %></p>
+						        		</div>
+						            <img class="bd-placeholder-img card-img-top" width="100%" height="225"  src="<%= @detail["img"] %>"><rect width="100%" height="100%" fill="#55595c"/>
+						
+								          <div class="card-body">
+								              <p class="card-text">お店の名前: <%= @detail["shopname"] %></p><br>
+								              <p class="card-text">ジャンル: <%= @detail["category"] %></p><br>
+								              <p class="card-text">評価: <%= @detail["assessment"] %></p><br>
+								              <p class="card-text"><a href="<%= @detail["shopurl"] %>">URL</a></p><br>
+								              <p class="card-text">コメント: <%= @detail["comment"] %></p><br>
+								              <form action="/post/<%= @detail.id %>/comment" method="post">
+								              	<textarea name="comment_content" cols="30" placeholder="コメントをする"></textarea>
+								              	<input type="submit" value="投稿"><br>
+								              </form>
+											  <% if !current_user.nil? %>
+											  	<% if !@detail.favorite_users.find_by(id: session[:user]) %>
+									              <div class="d-flex justify-content-between align-items-center">
+									                <div class="btn-group">
+									                  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/post/<%= @detail.id %>/like">いいねする</a></button>
+									                 </div>
+									              </div>
+									            <% else %>
+									              <div class="d-flex justify-content-between align-items-center">
+									                <div class="btn-group">
+									                  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/post/<%= @detail.id %>/like_del">削除</a></button>
+									                </div>
+									              </div>
+									             <% end %>
+									           <% end %>
+									           <% unless current_user.relationships.find_by(followed_id: @detail.user_id ) %>
+												    <a href="/home/<%= @detail.user_id %>/follow">フォローする</a>
+											   <% else %>
+												    <a href="/home/<%= @detail.user_id %>/follow_del">フォロー解除</a>
+											   <% end %>
+											   <% unless !Comment.find_by(post_id: @detail.id) %>
+											       <% @detail.comments.each do |content| %>
+											           <p class="card-text">返信: <%= content["comment_content"] %></p><br>
+											       <% end %>
+											   <% else %>
+											       まだコメントがありません
+											   <% end %>
+						            		</div>
+						          		</div>
+						        	</div>
+				</div>
+			</div>
+		</div>

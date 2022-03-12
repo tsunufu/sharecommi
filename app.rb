@@ -219,3 +219,14 @@ get '/home/:id/follow_del' do
     redirect '/home'
 end
 
+post '/post/:id/comment' do #コメント機能のpostメソッド
+    Comment.create(user_id: session[:user], post_id: params[:id], comment_content: params[:comment_content])
+    redirect '/home'
+end
+
+get '/post/:id/detail' do #投稿の詳細情報を表示させるgetメソッド
+    @detail = Post.find(params[:id])
+    erb :post_detail
+end
+
+
