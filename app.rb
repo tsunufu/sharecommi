@@ -46,7 +46,7 @@ get '/mypage' do
     else
         @useridposts = current_user.posts
         @favorites = current_user.favorite_posts
-        @followings = current_user.relationships.find_by(follower_id: session[:user]).count
+        #@followings = current_user.relationships.find_by(follower_id: session[:user])
         #@followers = current_user.relationships.find_by(follower_id: params[:id]).count
     end
     erb :mypage

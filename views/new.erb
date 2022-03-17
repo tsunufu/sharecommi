@@ -1,11 +1,15 @@
 <section class="first-view center-vertical">
-	<h1>新規投稿</h1>
+	<h1 class="h3 mb-3 fw-normal text-center">新規投稿</h1>
 	<div class="login_button">
 		<div class="container">
 		<form action="/home" method="post" enctype="multipart/form-data">
-		    お店の名前<br>
-		    <input type="text" name="shopname" placeholder="お店の名前"><br>
-		    <input type="file" name="file"><br>
+		    お店の名前
+		    <div class="form-floating my-3">
+		    	<input type="text" name="shopname" class="form-control-sm" placeholder="お店の名前">
+		    </div>
+			<div class="mb-3 my-3">
+				<input class="form-control" type="file" name="file" id="formFile">
+    		</div>
 		    <label for="grade">カテゴリー</label><br>
 				<select id="grade" name="category">
 					<option value="飲食店">飲食店</option>
@@ -14,13 +18,23 @@
 					<option value="ビューティー">ビューティー</option>
 					<option value="ホテル">ホテル</option>
 				</select><br>
-			評価<br>
-		    <input type="number" name="assessment"><br>
-		    URL<br>
-		    <input type="text" name="shopurl"><br>
-		    コメント<br>
-		    <textarea id="content" name="comment" rows="4" cols="40" placeholder="コメント"></textarea><br>
-		    <input type="submit" value="投稿">
+			<label for="assessment">評価</label><br>
+		    	<select id="assessment" name="assessment">
+		    		<option value="1">1</option>
+		    		<option value="2">2</option>
+		    		<option value="3">3</option>
+		    		<option value="4">4</option>
+		    		<option value="5">5</option>
+		    	</select><br>
+		    URL
+		    <div class="form-floating my-3">
+		    	<input type="text" name="shopurl" class="form-control-sm" placeholder="URL">
+		    </div>
+		    コメント
+		    <div class="form-floating my-3">
+		    	<textarea id="content" name="comment" rows="4" cols="40" placeholder="コメント"></textarea>
+		    </div>
+		    <button class="w-100 btn btn-lg" style="background-color: #393073; color: white;" type="submit">投稿</button>
 		</form>
 		</div>
 	</div>

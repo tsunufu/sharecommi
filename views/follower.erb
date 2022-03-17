@@ -1,8 +1,12 @@
 <section class="center-vertical">
 	<h1><%= current_user.name %>のフォロワー</h1>
+	<div class="row">
 	<% unless Relationship.find_by(followed_id: session[:user]).nil? %>
 		<% Relationship.where(followed_id: session[:user]).each do |relationship| %>
-			<p><%= User.find(relationship.follower_id).name %></p>
+			<img class="col-md-1 rounded-circle my-3" width="40" height="40" src="<%= User.find(relationship.follower_id).icon %>">
+			<p class="col-md-8"><%= User.find(relationship.follower_id).name %></p>
+			<a class="col-md-3 my-3 btn" href="/home/<%= current_user.id %>/follow">フォロー</a><br>
 		<% end %>
 	<% end %>
+	</div>
 </section>
