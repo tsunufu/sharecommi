@@ -1,27 +1,27 @@
 <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="">すべて</a>
+    <a class="nav-link active category_text" aria-current="page" href="">すべて</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/home/restaurant">飲食店</a>
+    <a class="nav-link category_text" href="/home/restaurant">飲食店</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="/home/cafe">カフェ</a>
+    <a class="nav-link category_text" href="/home/cafe">カフェ</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="home/leisure">レジャー</a>
+    <a class="nav-link category_text" href="home/leisure">レジャー</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="home/beauty">ビューティー</a>
+    <a class="nav-link category_text" href="home/beauty">ビューティー</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="home/hotel">ホテル</a>
+    <a class="nav-link category_text" href="home/hotel">ホテル</a>
   </li>
 </ul>
 	
 
 	<!--<div class="post center-vertical">-->
-		<div class="album py-5 bg-light">
+		<div class="album py-5">
     		<div class="container">
     			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 					<% if !@userposts.empty? %>
@@ -29,41 +29,45 @@
 						        <div class="col">
 						        	<div class="card shadow-sm">
 						        		<div class="card-header">
-						        			<p class="card-text"><%= User.find_by(id: userpost.user_id).name %></p>
+						        			<div class="row">
+						        			<p class="card-text col"><%= User.find_by(id: userpost.user_id).name %></p>
+						        			<% unless current_user.relationships.find_by(followed_id: userpost.user_id ) %>
+												    		<a class="col follow" href="/home/<%= userpost.user_id %>/follow"><i class="fa fa-user-plus"></i></a>
+											   	<% else %>
+												    		<a  class="col follow" href="/home/<%= userpost.user_id %>/follow_del"><i class="fa fa-user-minus"></i></a>
+												  <% end %>
+												  </div>
 						        		</div>
 						            <img class="bd-placeholder-img card-img-top" width="100%" height="225"  src="<%= userpost["img"] %>"><rect width="100%" height="100%" fill="#55595c"/>
 						
 								          <div class="card-body">
-								              <p class="card-text">お店の名前: <%= userpost["shopname"] %></p><br>
-								              <p class="card-text">ジャンル: <%= userpost["category"] %></p><br>
+								          	<div class="row">
+								              <p class="card-text col"><%= userpost["shopname"] %></p>
+								              <p class="card-text col"><%= userpost["category"] %></p><br>
+								            </div>
 								              <p class="card-text">評価: <%= userpost["assessment"] %></p><br>
-								              <p class="card-text"><a href="<%= userpost["shopurl"] %>">URL</a></p><br>
-								              <p class="card-text">コメント: <%= userpost["comment"] %></p><br>
+								              <p class="card-text"><a class="post_text" href="<%= userpost["shopurl"] %>">サイトへ</a></p><br>
+								              <p class="card-text"><%= userpost["comment"] %></p><br>
 								              <form action="/post/<%= userpost.id %>/comment" method="post">
 								              	<textarea name="comment_content" cols="30" placeholder="コメントをする"></textarea>
-								              	<input type="submit" value="投稿"><br>
+								              	<button type="submit" class="w-10 h-25 btn btn-lg" style="background-color: #393073; color: white;" >投稿</button>
 								              </form>
-								              <a class="card-text" href="/post/<%= userpost.id %>/detail">投稿を見る</a>
+								              <a class="card-text post_text" href="/post/<%= userpost.id %>/detail">投稿を見る</a>
 											  <% if !current_user.nil? %>
 											  	<% if !userpost.favorite_users.find_by(id: session[:user]) %>
 									              <div class="d-flex justify-content-between align-items-center">
 									                <div class="btn-group">
-									                  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/post/<%= userpost.id %>/like">いいねする</a></button>
+									                  <button type="button" class="btn-sm favorite_button"><a href="/post/<%= userpost.id %>/like"><i class="far fa-heart text-muted"></i></a></button>
 									                 </div>
 									              </div>
 									            <% else %>
 									              <div class="d-flex justify-content-between align-items-center">
 									                <div class="btn-group">
-									                  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="/post/<%= userpost.id %>/like_del">削除</a></button>
+									                  <button type="button" class=" btn-sm favorite_button"><a class="favorite" href="/post/<%= userpost.id %>/like_del"><i class="fas fa-heart"></i></a></button>
 									                </div>
 									              </div>
 									             <% end %>
 									           <% end %>
-									           <% unless current_user.relationships.find_by(followed_id: userpost.user_id ) %>
-												    <a href="/home/<%= userpost.user_id %>/follow">フォローする</a>
-											   <% else %>
-												    <a href="/home/<%= userpost.user_id %>/follow_del">フォロー解除</a>
-											   <% end %>
 						            		</div>
 						          		</div>
 						        	</div>

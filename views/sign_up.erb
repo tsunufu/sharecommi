@@ -11,7 +11,7 @@
 
 <section class="first-view center-vertical">
 <main class="form-signup">
-  <form action="/signup" method="post">
+  <form action="/signup" method="post" enctype="multipart/form-data">
     <h1 class="h3 mb-3 fw-normal text-center">新規登録</h1>
 
     <div class="form-floating my-3">
@@ -29,7 +29,7 @@
     <div class="mb-3 my-3">
       <input class="form-control" type="file" name="file" id="formFile">
     </div>
-    <input class="w-100 btn btn-lg" style="background-color: #393073; color: white;" type="submit" value="Sign Up"><!--文字の色ここで変更してしまったよ-->
+    <button class="w-100 btn btn-lg" style="background-color: #393073; color: white;" type="submit">SignUp</button><!--文字の色ここで変更してしまった-->
   </form>
 </main>
 </section>

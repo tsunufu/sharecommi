@@ -2,6 +2,10 @@
     margin: 0;
     padding: 0;
   }
+  
+  a{
+    text-decoration: none;
+  }
 
   nav {
     height: 70px;
@@ -90,7 +94,7 @@
     background-size: cover;
     background-repeat: no-repeat;
     */
-    background-color: #d3d3d3;
+    background-color: #FFC800;
   }
   
   .detail{
@@ -116,4 +120,48 @@
 {
   color: #ffffff;
   background-color: #393073;
+}
+.card-header{
+  background-color: #fff;
+}
+.card{
+  border: none;
+}
+.favorite_button{
+  background: transparent;
+}
+button{
+  border: none;
+}
+.detail_img{
+  width: 600px;
+  margin: 0 auto;
+}
+.card_detail{
+  width: 700px;
+  margin: 0 auto;
+}
+.category_text{
+  color: #000;
+}
+.category_text:hover{
+  color: #616161;
+}
+.favorite{
+  color: red;
+}
+.favorite:hover{
+  color: transparent;
+}
+.follow{
+  color: #000;
+}
+.follow:hover{
+  color: #616161;
+}
+.post_text{
+  color: #000;
+}
+.post_text:hover{
+  color: #616161;
 }

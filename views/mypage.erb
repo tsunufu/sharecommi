@@ -1,25 +1,24 @@
 
-
 <div class="container">
 	<div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-4 my-5">
         <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="<%= User.find_by(id: current_user).icon %>">
-        <h2><%= User.find_by(id: current_user).name %></h2>
+        <h2 class="my-3"><%= User.find_by(id: current_user).name %></h2>
       </div><!-- /.col-lg-4 -->
       
-      <div class="col-lg-4">
+      <div class="col-lg-4 my-5">
       	<% if current_user.intro.nil? %>
       	<p>自己紹介文が入力されていません</p><br>
       	<% else %>
       	<p><%= User.find_by(id: current_user).intro %></p>
       	<% end %>
-      	<a href="mypage/<%= current_user.id %>/following"><strong>フォロー中</strong></a>
-      	<a href="mypage/<%= current_user.id %>/follower"><strong>フォロワー</strong></a>
+      	<a class="post_text" href="mypage/<%= current_user.id %>/following"><strong>フォロー中</strong></a>
+      	<a class="post_text" href="mypage/<%= current_user.id %>/follower"><strong>フォロワー</strong></a>
       </div>
       
       <div class-"col-lg-4">
       	<!--編集用リンクを作る-->
-      	<a href="mypage/<%= current_user.id %>/edit">編集</a>
+      	<a class="post_text" href="mypage/<%= current_user.id %>/edit">編集</a>
       </div>
       	
       
@@ -28,10 +27,10 @@
    
    <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" aria-current="page" href="">自分の投稿</a>
+    <a class="nav-link active post_text" aria-current="page" href="">自分の投稿</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="../mypage/favorite">いいねした投稿</a>
+    <a class="nav-link post_text" href="../mypage/favorite">いいねした投稿</a>
   </li>
 </ul>
 
