@@ -47,9 +47,9 @@
 								              <p class="card-text">お店の名前: <%= useridpost["shopname"] %></p><br>
 								              <p class="card-text">ジャンル: <%= useridpost["category"] %></p><br>
 								              <p class="card-text">評価: <%= useridpost["assessment"] %></p><br>
-								              <p class="card-text"><a href="<%= useridpost["shopurl"] %>">URL</a></p><br>
+								              <p class="card-text"><a class="post_text" href="<%= useridpost["shopurl"] %>">サイトへ</a></p><br>
 								              <p class="card-text">コメント: <%= useridpost["comment"] %></p><br>
-								              <a href="/post/<%= useridpost.id %>/edit">編集</a>
+								              <a class="post_text" href="/post/<%= useridpost.id %>/edit">編集</a>
 										</div>
 						          		</div>
 						        	</div>
