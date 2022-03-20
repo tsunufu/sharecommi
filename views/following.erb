@@ -1,7 +1,6 @@
 <section class="center-vertical">
 	<div class="container">
 		<div class="row">
-			<h1><%= current_user.name %>のフォロー</h1>
 					<% current_user.relationships.each do |relationship| %>
 						<img class="col-md-1 rounded-circle my-3" width="40px" height="60px" src="<%= User.find(relationship.followed_id).icon %>">
 						<a href="/follow/<%= User.find(relationship.followed_id).id %>/mypage" class="col-md-9 follow-name my-3 post_text"><%= User.find(relationship.followed_id).name %></a>
