@@ -13,25 +13,21 @@
 </section>
 </body>-->
 <body class="main">
-<div class="container col-xxl-8 px-4 py-5">
-    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-      <div class="col-10 col-sm-8 col-lg-6">
-        <!--<img src="/assets/img/main2_img.jpg" class="d-block mx-lg-auto img-fluid" alt="メイン画像" width="700" height="500" loading="lazy">-->
-      </div>
-      <div class="col-lg-6">
-        <h1 class="display-5 fw-bold lh-1 mb-3">SHARE COMMI</h1>
-        <h3>全く新しいクチコミ投稿SNS</h3>
-        <p class="lead">従来の匿名のクチコミアプリとは違い，身近な人の口コミが見れるサービス<br>
-          友達におすすめされたお店ならとりあえず行ってみようって気になりませんか？<br>
-          もう大量のクチコミを見て悩む時代は終わりにしよう。</p>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-          <% unless !current_user.nil? %>
-            <a href="/signup" class="btn btn-secondary btn-lg px-4 me-md-2" style="background-color: #393073;">新規登録</a>
-            <a href="/signin" class="btn btn-secondary btn-lg px-4 me-md-2" style="background-color: #393073;">ログイン</a>
-          <% end %>
-        </div>
+  <div class="px-4 py-5 my-5 text-center">
+    <h1 class="display-5 fw-bold">SHARE COMMI</h1>
+    <h3>全く新しいクチコミ投稿SNS</h3>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">従来の匿名のクチコミアプリとは違い，身近な人の口コミが見れるサービス
+        友達におすすめされたお店ならとりあえず行ってみようって気になりませんか？
+        もう大量のクチコミを見て悩む時代は終わりにしよう。</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <% unless !current_user.nil? %>
+        <a href="/signup" class="btn btn-secondary btn-lg px-4 me-md-2" style="background-color: #393073;">新規登録</a>
+        <a href="/signin" class="btn btn-secondary btn-lg px-4 me-md-2" style="background-color: #393073;">ログイン</a>
+      <% end %>
       </div>
     </div>
   </div>
+
 </body>
 
