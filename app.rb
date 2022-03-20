@@ -189,6 +189,12 @@ get '/mypage/:id/edit' do
     erb :edit
 end
 
+get '/follow/:id/mypage' do
+    @useridposts = Post.where(user_id: params[:id])
+    @followuser = User.find(params[:id])
+    erb :follow_mypage
+end
+
 post '/mypage/:id' do
     info = User.find(params[:id])
     info.intro = params[:intro]

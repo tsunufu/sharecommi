@@ -1,0 +1,60 @@
+<div class="container">
+	<div class="row">
+      <div class="col-lg-4 my-5">
+        <img class="bd-placeholder-img rounded-circle" width="140" height="140" src="<%= @followuser.icon %>">
+        <h2 class="my-3"><%= @followuser.name %></h2>
+      </div><!-- /.col-lg-4 -->
+      
+      <div class="col-lg-4 my-5">
+      	<% if @followuser.intro.nil? %>
+      	<p>自己紹介文が入力されていません</p><br>
+      	<% else %>
+      	<p><%= @followuser.intro %></p>
+      	<% end %>
+      	<a class="post_text" href="mypage/<%= current_user.id %>/following"><strong>フォロー中</strong></a>
+      	<a class="post_text" href="mypage/<%= current_user.id %>/follower"><strong>フォロワー</strong></a>
+      </div>
+      
+
+      	
+      
+    </div><!-- /.row -->
+   </div>
+   
+   <ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active post_text" aria-current="page" href=""><%= @followuser.name %>の投稿</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link post_text" href="../mypage/favorite">いいねした投稿</a>
+  </li>
+</ul>
+
+		<div class="album py-5 bg-light">
+    		<div class="container">
+    			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+					<% if !@useridposts.empty? %>
+						<% @useridposts.each do |useridpost| %>
+						        <div class="col">
+						        	<div class="card shadow-sm">
+						            <img class="bd-placeholder-img card-img-top" width="100%" height="225"  src="<%= useridpost["img"] %>"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/>
+						
+								        <div class="card-body">
+								              <p class="card-text">お店の名前: <%= useridpost["shopname"] %></p><br>
+								              <p class="card-text">ジャンル: <%= useridpost["category"] %></p><br>
+								              <p class="card-text">評価: <%= useridpost["assessment"] %></p><br>
+								              <p class="card-text"><a class="post_text" href="<%= useridpost["shopurl"] %>">サイトへ</a></p><br>
+								              <p class="card-text">コメント: <%= useridpost["comment"] %></p><br>
+										</div>
+						          		</div>
+						        	</div>
+						<% end %>
+				</div>
+			</div>
+		</div>
+	<!--</div>-->
+			<% else %>
+			<p>投稿がありません</p>
+			<% end %>
+
+
