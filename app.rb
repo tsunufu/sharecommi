@@ -68,6 +68,16 @@ get '/mypage/:id/follower' do
     erb :follower
 end
 
+get '/follow/:id/following' do
+    @followuser = User.find(params[:id])
+    erb :follow_following
+end
+
+get '/follow/:id/follower' do
+    @followuser = User.find(params[:id])
+    erb :follow_follower
+end
+
 get '/home/restaurant' do
     @contents = User.all.order('id desc')
     @userposts = Post.where(category: "飲食店")
@@ -194,6 +204,13 @@ get '/follow/:id/mypage' do
     @followuser = User.find(params[:id])
     erb :follow_mypage
 end
+
+get '/follow/:id/mypage/favorite' do
+    @useridposts = User.find(params[:id]).favorite_posts
+    @followuser = User.find(params[:id])
+    erb :follow_mypage_like
+end
+
 
 post '/mypage/:id' do
     info = User.find(params[:id])

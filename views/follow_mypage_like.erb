@@ -11,8 +11,8 @@
       	<% else %>
       	<p><%= @followuser.intro %></p>
       	<% end %>
-      	<a class="post_text" href="/follow/<%= @followuser.id %>/following"><strong>フォロー中</strong></a>
-      	<a class="post_text" href="/follow/<%= @followuser.id %>/follower"><strong>フォロワー</strong></a>
+      	<a class="post_text" href="mypage/<%= current_user.id %>/following"><strong>フォロー中</strong></a>
+      	<a class="post_text" href="mypage/<%= current_user.id %>/follower"><strong>フォロワー</strong></a>
       </div>
       
 
@@ -23,10 +23,10 @@
    
    <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active post_text" aria-current="page" href=""><%= @followuser.name %>の投稿</a>
+    <a class="nav-link post_text" aria-current="page" href="../../../follow/<%= @followuser.id %>/mypage"><%= @followuser.name %>の投稿</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link post_text" href="../../follow/<%= @followuser.id %>/mypage/favorite">いいねした投稿</a>
+    <a class="nav-link active post_text" href="">いいねした投稿</a>
   </li>
 </ul>
 
