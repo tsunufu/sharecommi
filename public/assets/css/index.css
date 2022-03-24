@@ -24,6 +24,10 @@
     border-radius: 50%;
     background-color: aliceblue;
   }
+  
+  .nav-link{
+    background-color: #393073;
+  }
 
 	.first-view {
 	  height: 350px;
