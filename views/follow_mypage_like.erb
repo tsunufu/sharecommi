@@ -11,8 +11,8 @@
       	<% else %>
       	<p><%= @followuser.intro %></p>
       	<% end %>
-      	<a class="post_text" href="mypage/<%= current_user.id %>/following"><strong>フォロー中</strong></a>
-      	<a class="post_text" href="mypage/<%= current_user.id %>/follower"><strong>フォロワー</strong></a>
+      	<a class="post_text" href="/follow/<%= @followuser.id %>/following"><strong>フォロー中</strong></a>
+      	<a class="post_text" href="/follow/<%= @followuser.id %>/follower"><strong>フォロワー</strong></a>
       </div>
       
 

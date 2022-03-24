@@ -12,8 +12,8 @@
       	<% else %>
       	<p><%= User.find_by(id: current_user).intro %></p>
       	<% end %>
-      	<a class="post_text" href="mypage/:id/following"><strong>フォロー中</strong></a>
-      	<a class="post_text" href="mypage/:id/follower"><strong>フォロワー</strong></a>
+      	<a class="post_text" href="/mypage/:id/following"><strong>フォロー中</strong></a>
+      	<a class="post_text" href="/mypage/:id/follower"><strong>フォロワー</strong></a>
       </div>
       
       <div class-"col-lg-4">
