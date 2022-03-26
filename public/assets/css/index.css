@@ -27,8 +27,10 @@
   
   .nav-link{
     background-color: #393073;
+    z-index: 3;
   }
-
+  
+  
 	.first-view {
 	  height: 350px;
     width: 100%;
@@ -127,6 +129,7 @@
 }
 .card-header{
   background-color: #fff;
+  z-index: 0;
 }
 .card{
   border: none;
@@ -169,3 +172,4 @@ button{
 .post_text:hover{
   color: #616161;
 }
+
